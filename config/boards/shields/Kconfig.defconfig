@@ -1,4 +1,4 @@
-if SHIELD_hontonopage
+if SHIELD_HONTONOPAGE
 
 config ZMK_KEYBOARD_NAME
     default "hontonopage"

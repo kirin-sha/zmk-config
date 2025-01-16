@@ -1,3 +1,4 @@
+name: hontonopage
 build:
   settings:
-    board_root: .
+    board_root: config

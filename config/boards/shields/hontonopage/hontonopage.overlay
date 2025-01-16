@@ -4,6 +4,3 @@
     status = "okay";
 };
 
-&right_encoder {
-    status = "okay";
-};

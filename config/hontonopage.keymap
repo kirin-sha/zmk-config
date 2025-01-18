@@ -19,10 +19,10 @@
 
         default_layer {
             bindings = <
-&studio_unlock
 &kp UP
 &kp LEFT &kp RIGHT
 &kp DOWN
+&studio_unlock
             >;
 
             sensor-bindings = <&inc_dec_kp PAGE_UP PAGE_DOWN>;

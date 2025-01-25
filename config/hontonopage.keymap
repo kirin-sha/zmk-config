@@ -65,7 +65,7 @@
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
+        Default {
             bindings = <
 &kp Q        &kp W         &kp E        &kp R        &kp T
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;

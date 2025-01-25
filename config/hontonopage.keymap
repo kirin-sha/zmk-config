@@ -67,9 +67,9 @@
 
         Default {
             bindings = <
-&kp Q
-&kp W &studio_unlock &kp R 
-&kp T>;
+&kp N1
+&kp N2 &kp N3 &kp N4 
+&kp N5>;
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
         };
 

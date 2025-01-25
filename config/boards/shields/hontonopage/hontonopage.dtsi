@@ -3,41 +3,54 @@
 
 / {
     chosen {
-        zmk,kscan = &kscan0;
-        zmk,physical-layout = &hontonopage_physical_layout;
-
-    hontonopage_physical_layout: hontonopage_physical_layout {
+        zmk,physical-layout = &roba_physical_layout;
+    };
+    
+    roba_physical_layout: roba_physical_layout {
         compatible = "zmk,physical-layout";
-        display-name = "default_layout";
-
+        display-name = "Default";
+        transform = <&default_transform>;
         kscan = <&kscan0>;
-        transform = <&matrix_transform0>;
 
         keys  //                     w   h    x    y     rot    rx    ry
-            = <&key_physical_attrs 100 100  100  100       0     0     0>
-            , <&key_physical_attrs 100 100  100    0       0     0     0>
-            , <&key_physical_attrs 100 100    0  100       0     0     0>
+            = <&key_physical_attrs 100 100  100    0       0     0     0>
+            , <&key_physical_attrs 100 100    0    0       0     0     0>
+            , <&key_physical_attrs 100 100  100  100       0     0     0>
             , <&key_physical_attrs 100 100  200  100       0     0     0>
+            , <&key_physical_attrs 100 100  300  100       0     0     0>
             , <&key_physical_attrs 100 100  100  200       0     0     0>
             ;
     };
-};
 
-kscan0: kscan {
-    compatible = "zmk,kscan-gpio-direct";
-    wakeup-source;
-    input-gpios
-        = <&xiao_d 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-        , <&xiao_d 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-        , <&xiao_d 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-        , <&xiao_d 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-        , <&xiao_d 8 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-        , <&xiao_d 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-        , <&xiao_d 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-        ;
-};
+    default_transform: keymap_transform_0 {
+        compatible = "zmk,matrix-transform";
+        columns = <2>;
+        rows = <5>;               
+        map = <
+                    RC(0,0)
+            RC(1,1) RC(1,2) RC(1,3)
+                    RC(1,4)
+        >;
+    };
+    
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        label = "KSCAN";
+        diode-direction = "col2row";
+            col-gpios
+                = <&xiao_d 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+                , <&xiao_d 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+                ;
+            row-gpios
+                = <&xiao_d 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+                , <&xiao_d 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+                , <&xiao_d 8 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+                , <&xiao_d 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+                , <&xiao_d 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+                ;
+    };
 
-   left_encoder: encoder_left {
+    left_encoder: encoder_left {
         compatible = "alps,ec11";
         a-gpios = <&xiao_d 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&xiao_d 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;

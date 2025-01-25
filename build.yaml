@@ -17,10 +17,10 @@
 #     artifact-name: corne_left_with_logging
 #
 ---
-board: ["seeeduino_xiao_ble"]
-shield: ["hontonopage","settings_reset"]
 include:
  - board: seeeduino_xiao_ble
    shield: hontonopage
    snippet: studio-rpc-usb-uart
    cmake-args: -DCONFIG_ZMK_STUDIO=y
+ - board: seeeduino_xiao_ble
+   shield: settings_reset

@@ -1,6 +1,2 @@
 #include "hontonopage.dtsi"
 
-&left_encoder {
-    status = "okay";
-};
-

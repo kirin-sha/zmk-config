@@ -1,6 +1,7 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
+#include <behaviors/rgbled_widget.dtsi>
 
 #define Default 0
 #define BLE 1
@@ -67,11 +68,11 @@
 
         Default {
             bindings = <
-                &kp UP
+                &ind_bat
                 &kp LEFT
                 &to BLE
                 &kp RIGHT
-                &kp DOWN
+                &ind_con
             >;
 
             sensor-bindings = <&inc_dec_kp LEFT RIGHT>;

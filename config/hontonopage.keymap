@@ -7,7 +7,7 @@
 #define Default 0
 #define BLE 1
 #define Boot 2
-#define Blank 3
+#define Power_off 3
 
 &mt {
     flavor = "balanced";
@@ -83,7 +83,7 @@
             bindings = <
                 &bt BT_CLR
                 &bt BT_PRV
-                &to Default
+                &to Power_off
                 &bt BT_NXT
                 &mo Boot
             >;
@@ -103,11 +103,11 @@
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
-        Blank {
+        Power_off {
             bindings = <
                 &trans
                 &trans
-                &trans
+                &hw_soft_off
                 &trans
                 &trans
             >;

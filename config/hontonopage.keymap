@@ -109,7 +109,7 @@
                 &trans
                 &to Default
                 &trans
-                &wakeup_scan
+                &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;

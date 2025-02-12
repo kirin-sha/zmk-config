@@ -105,9 +105,9 @@
 
         Power_off {
             bindings = <
-                &trans
-                &trans
                 &hw_soft_off
+                &trans
+                &to Default
                 &trans
                 &trans
             >;

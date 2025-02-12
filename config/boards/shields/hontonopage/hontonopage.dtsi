@@ -49,6 +49,10 @@
                 , <&xiao_d 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
                 ;
     };
+	     soft_off_wakers {
+        compatible = "zmk,soft-off-wakeup-sources";
+        wakeup-sources = <&kscan0>;
+    };
 
     left_encoder: encoder_left {
         compatible = "alps,ec11";

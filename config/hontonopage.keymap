@@ -33,7 +33,7 @@
             bindings = <
                 &ind_bat
                 &to Config
-                &hold_tap 3 &kp F0
+                &trans
                 &to Boot
                 &ind con
             >;

@@ -57,9 +57,9 @@
         Status {
             bindings = <
                 &ind_bat
-                &kp F0
+                &kp F10
                 &to Default
-                &kp F0
+                &kp F10
                 &ind_con
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;

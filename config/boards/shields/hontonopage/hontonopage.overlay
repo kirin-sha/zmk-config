@@ -4,6 +4,8 @@
 
 / {
     behaviors {
+        compatible = "zmk,behaviors";
+
         hold_tap: hold_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;

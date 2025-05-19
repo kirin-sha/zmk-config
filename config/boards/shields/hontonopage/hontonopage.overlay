@@ -2,12 +2,12 @@
 
 / {
     behaviors {
-        hw_soft_off: hw_soft_off {
-            compatible = "zmk,behavior-soft-off";
-            #binding-cells = <0>;
-            split-peripheral-off-on-press; // Turn peripheral off immediately for reliability
-            hold-time-ms = <2000>; // Only turn off if the key is held for 2 seconds or longer.
+        hold_tap: hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <0>;
         };
     };
-
 };

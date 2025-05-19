@@ -5,9 +5,9 @@
 #include <behaviors/rgbled_widget.dtsi>
 
 #define Default 0
-#define BLE 1
-#define Boot 2
-#define Power_off 3
+#define Status 1
+#define Config 2
+#define Boot 3
 
 &mt {
     flavor = "balanced";
@@ -15,101 +15,60 @@
 };
 
 / {
-    combos {
-        compatible = "zmk,combos";
-
-        tab {
-            bindings = <&kp TAB>;
-            key-positions = <11 12>;
-        };
-
-        shift_tab {
-            bindings = <&kp LS(TAB)>;
-            key-positions = <12 13>;
-        };
-
-        muhennkann {
-            bindings = <&to_layer_0 INT_MUHENKAN>;
-            key-positions = <11 10>;
-        };
-
-        double_quotation {
-            bindings = <&kp DOUBLE_QUOTES>;
-            key-positions = <20 21>;
-        };
-
-        eq {
-            bindings = <&kp EQUAL>;
-            key-positions = <24 25>;
-        };
-    };
-
-    macros {
-        to_layer_0: to_layer_0 {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
-            label = "TO_LAYER_0";
-        };
-    };
-
-    behaviors {
-        lt_to_layer_0: lt_to_layer_0 {
-            compatible = "zmk,behavior-hold-tap";
-            label = "LAYER_TAP_TO_0";
-            bindings = <&mo>, <&to_layer_0>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-        };
-    };
-
     keymap {
         compatible = "zmk,keymap";
 
         Default {
             bindings = <
-                &ind_bat
+                &kp BACK
                 &kp LEFT
-                &to BLE
+                &kp C_MEDIA_HOME {
+                    label = "HOME_Config";
+                    bindings = <&hold_tap &to Config &kp HOME>;
+                };
                 &kp RIGHT
-                &ind_con
+                &kp F5
             >;
 
             sensor-bindings = <&inc_dec_kp LEFT RIGHT>;
         };
 
-        BLE {
+        Config {
             bindings = <
-                &bt BT_CLR
-                &bt BT_PRV
-                &to Power_off
-                &bt BT_NXT
-                &mo Boot
+                &kp F4
+                &kp F1
+                &kp F0 {
+                    label = "F0_Status";
+                    bindings = <&hold_tap &to Status &kp F0>;
+                };
+                &kp F2
+                &kp F3
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
+
+        Status {
+            bindings = <
+                &ind_bat
+                &bt BT_PRV
+                &to Default  {
+                    label = "Default_Boot";
+                    bindings = <&hold_tap &mo Boot &kp F0>;
+                };
+                &bt BT_NXT
+                &ind con
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
 
         Boot {
             bindings = <
                 &trans
                 &trans
+                &trans
+                &trans
                 &bootloader
-                &trans
-                &trans
-            >;
-
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
-        };
-
-        Power_off {
-            bindings = <
-                &hw_soft_off
-                &trans
-                &to Default
-                &trans
-                &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;

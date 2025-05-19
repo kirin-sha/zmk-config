@@ -54,7 +54,7 @@
         wakeup-sources = <&kscan0>;
     };
 
-    left_encoder: encoder_left {
+    encoder: encoder {
         compatible = "alps,ec11";
         a-gpios = <&xiao_d 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&xiao_d 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
@@ -64,7 +64,7 @@
 
     sensors: sensors {
         compatible = "zmk,keymap-sensors";
-        sensors = <&left_encoder>;
+        sensors = <&encoder>;
         triggers-per-rotation = <6>;
     };
  

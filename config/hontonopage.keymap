@@ -35,7 +35,7 @@
                 &to Config
                 &trans
                 &to Boot
-                &trans
+                &ind_con
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };

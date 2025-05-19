@@ -5,16 +5,10 @@
 #include <behaviors/rgbled_widget.dtsi>
 
 #define Default 0
-<<<<<<< HEAD
 #define Layer 1
 #define Config 2
 #define Status 3
 #define Boot 4
-=======
-#define Status 1
-#define Config 2
-#define Boot 3
->>>>>>> f4808e70458e3304e2344d58c514962e2384a277
 
 &mt {
     flavor = "balanced";
@@ -27,24 +21,15 @@
 
         Default {
             bindings = <
-<<<<<<< HEAD
                 &kp C_AC_HOME
                 &kp LEFT
                 &lt 1 &kp F5
                 &kp RIGHT
                 &kp C_AC_BACK
-=======
-                &kp C_AC_BACK
-                &kp LEFT
-                &hold_tap 1 &kp C_AC_HOME
-                &kp RIGHT
-                &kp F5
->>>>>>> f4808e70458e3304e2344d58c514962e2384a277
             >;
             sensor-bindings = <&inc_dec_kp LEFT RIGHT>;
         };
 
-<<<<<<< HEAD
         Layer {
             bindings = <
                 &trans
@@ -75,14 +60,6 @@
                 &kp F0
                 &to Default
                 &kp F0
-=======
-        Status {
-            bindings = <
-                &ind_bat
-                &to Config
-                &trans
-                &to Boot
->>>>>>> f4808e70458e3304e2344d58c514962e2384a277
                 &ind_con
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;

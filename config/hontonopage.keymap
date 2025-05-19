@@ -23,7 +23,7 @@
             bindings = <
                 &kp C_AC_HOME
                 &kp LEFT
-                &lt 1 &kp F5
+                &lt 1 F5
                 &kp RIGHT
                 &kp C_AC_BACK
             >;

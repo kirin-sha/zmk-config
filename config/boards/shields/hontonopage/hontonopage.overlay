@@ -1,4 +1,6 @@
 #include "hontonopage.dtsi"
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/behaviors.h>
 
 / {
     behaviors {
@@ -8,7 +10,14 @@
             flavor = "balanced";
             tapping-term-ms = <200>;
             quick-tap-ms = <0>;
-            bindings = <>;
+        };
+
+        mod_tap: mod_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            display-name = "Mod-Tap";
         };
     };
 };

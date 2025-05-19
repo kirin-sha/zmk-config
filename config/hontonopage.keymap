@@ -22,7 +22,7 @@
             bindings = <
                 &kp C_AC_BACK
                 &kp LEFT
-                &hold_tap &to Config &kp HOME
+                &hold_tap &to Config &kp C_AC_HOME
                 &kp RIGHT
                 &kp F5
             >;

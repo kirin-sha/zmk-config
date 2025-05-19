@@ -14,7 +14,7 @@
     quick-tap-ms = <0>;
 };
 
-/ {
+ / {
     keymap {
         compatible = "zmk,keymap";
 
@@ -22,7 +22,7 @@
             bindings = <
                 &kp C_AC_BACK
                 &kp LEFT
-                &hold_tap &to Config &kp C_AC_HOME
+                &hold_tap 2 &kp C_AC_HOME
                 &kp RIGHT
                 &kp F5
             >;
@@ -33,7 +33,7 @@
             bindings = <
                 &kp F4
                 &kp F1
-                &hold_tap &to Status &kp F0
+                &hold_tap 1 &kp F0
                 &kp F2
                 &kp F3
             >;

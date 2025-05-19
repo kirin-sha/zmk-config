@@ -20,7 +20,7 @@
 
         Default {
             bindings = <
-                &kp BACK
+                &kp C_AC_BACK
                 &kp LEFT
                 &hold_tap &to Config &kp HOME
                 &kp RIGHT

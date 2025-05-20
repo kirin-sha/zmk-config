@@ -21,7 +21,7 @@
             bindings = <
                 &kp C_AC_HOME  // 上
                 &kp LEFT       // 左
-                &kp A         // 中
+                &lt 1 F5       // 中
                 &kp RIGHT      // 右
                 &kp C_AC_BACK  // 下
             >;

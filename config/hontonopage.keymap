@@ -21,7 +21,7 @@
             bindings = <
 &kp C_AC_HOME
                &kp LEFT
-               &mo 1
+               &to 1
                &kp RIGHT
                &kp C_AC_BACK
             >;
@@ -33,7 +33,7 @@
             bindings = <
 &trans
         &to Config
-        &trans
+        &to 1
         &to Boot
         &to Status
             >;

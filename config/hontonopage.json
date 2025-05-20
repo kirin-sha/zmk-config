@@ -13,9 +13,9 @@
   },
   "sensors": [
     {
-      "ref": "encoder",
-      "name": "encoder",
-      "identifier": "encoder",
+      "ref": "encoder0",
+      "name": "encoder0",
+      "identifier": "encoder0",
       "compatible": "alps,ec11",
       "enabled": true
     }

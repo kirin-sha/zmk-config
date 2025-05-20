@@ -38,15 +38,15 @@
         wakeup-source;
         diode-direction = "col2row";
             col-gpios
-                = <&xiao_d 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-                , <&xiao_d 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+                = <&xiao_d 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+                , <&xiao_d 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
                 ;
             row-gpios
-                = <&xiao_d 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-                , <&xiao_d 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-                , <&xiao_d 8 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-                , <&xiao_d 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-                , <&xiao_d 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+                = <&xiao_d 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+                , <&xiao_d 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+                , <&xiao_d 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+                , <&xiao_d 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+                , <&xiao_d 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
                 ;
     };
 	     soft_off_wakers {
@@ -56,8 +56,8 @@
 
     encoder0: encoder0 {
         compatible = "alps,ec11";
-        a-gpios = <&xiao_d 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        b-gpios = <&xiao_d 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        a-gpios = <&xiao_d 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&xiao_d 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         steps = <12>;
         status = "okay";
     };

@@ -21,7 +21,7 @@
             bindings = <
                 &kp C_AC_HOME  // 上
                 &kp LEFT       // 左
-                &kp F5         // 中
+                &kp A         // 中
                 &kp RIGHT      // 右
                 &kp C_AC_BACK  // 下
             >;
@@ -33,7 +33,7 @@
             bindings = <
                 &trans
                 &to Config
-                &to 1
+                &to 0
                 &to Boot
                 &to Status
             >;

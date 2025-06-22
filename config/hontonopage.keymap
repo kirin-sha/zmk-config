@@ -1,12 +1,11 @@
 #include <behaviors/rgbled_widget.dtsi>
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
 
-#define Default 0
-#define Layer 1
-#define Config 2
-#define Status 3
-#define Boot 4
+#define DEFAULT 0
+#define FUNCTION 1
+#define SYSTEM 2
 
 &mt {
     flavor = "balanced";
@@ -14,67 +13,151 @@
 };
 
 / {
+    // マクロ定義
+    macros {
+        // Boox専用マクロ（Fn系のみ）
+        boox_refresh: boox_refresh {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings = <&macro_press &kp LALT>, <&macro_tap &kp N5>, <&macro_release &kp LALT>;  // Fn + 5 フルリフレッシュ
+        };
+        
+        boox_search: boox_search {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings = <&macro_press &kp LALT>, <&macro_tap &kp EQUAL>, <&macro_release &kp LALT>;  // Fn + = 検索
+        };
+        
+        boox_brightness_up: boox_brightness_up {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings = <&macro_press &kp LALT>, <&macro_tap &kp N4>, <&macro_release &kp LALT>;  // Fn + 4 明るさ+
+        };
+        
+        boox_brightness_down: boox_brightness_down {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings = <&macro_press &kp LALT>, <&macro_tap &kp N3>, <&macro_release &kp LALT>;  // Fn + 3 明るさ-
+        };
+        
+        // 便利マクロ
+        email_macro: email_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings = <&kp AT &kp G &kp M &kp A &kp I &kp L &kp DOT &kp C &kp O &kp M>;
+        };
+    };
+
+    // タップダンス定義
+    behaviors {
+        // F5キーのタップダンス：1回でF5、2回でBooxフルリフレッシュ、3回で次ページ
+        f5_dance: tap_dance_f5 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&kp F5>, <&boox_refresh>, <&kp RIGHT>;
+        };
+        
+        // 右キーのタップダンス：1回で→、2回でAlt+Tab（マルチタスク）、3回でEnd
+        right_dance: tap_dance_right {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&kp RIGHT>, <&kp LA(TAB)>, <&kp END>;
+        };
+        
+        // ホームキーのタップダンス：1回でホーム、2回でBoox検索、3回でCtrl+Home
+        home_dance: tap_dance_home {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&kp C_AC_HOME>, <&boox_search>, <&kp LC(HOME)>;
+        };
+    };
+
+    // コンボ機能の定義
+    combos {
+        compatible = "zmk,combos";
+        
+        // 左+中央キーでFunction層へ
+        combo_function {
+            timeout-ms = <50>;
+            key-positions = <1 2>;
+            bindings = <&mo FUNCTION>;
+        };
+        
+        // 左+右キーでSystem層
+        combo_system {
+            timeout-ms = <50>;
+            key-positions = <1 3>;
+            bindings = <&mo SYSTEM>;
+        };
+        
+        // 上+下キーでスクリーンショット
+        combo_screenshot {
+            timeout-ms = <100>;
+            key-positions = <0 4>;
+            bindings = <&kp LA(N9)>;  // Fn + 9
+        };
+        
+        // 右+下キーでブートローダー（緊急時）
+        combo_bootloader {
+            timeout-ms = <100>;
+            key-positions = <3 4>;
+            bindings = <&bootloader>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
-        Default {
+        default_layer {
+            label = "Base";
             bindings = <
-                &kp C_AC_HOME  // 上
-                &kp LEFT       // 左
-                &lt 1 F5       // 中
-                &kp RIGHT      // 右
-                &kp C_AC_BACK  // 下
+                &home_dance        // 上：ホーム/Boox検索/Ctrl+Home
+                &kp LEFT           // 左：←（前ページ）
+                &lt FUNCTION F5    // 中：F5（ホールドでFunction層）
+                &right_dance       // 右：→/マルチタスク/End
+                &kp C_AC_BACK      // 下：Androidバック
             >;
 
-            sensor-bindings = <&inc_dec_kp LEFT RIGHT>;
+            sensor-bindings = <&inc_dec_kp RIGHT LEFT>;  // 右で次ページ、左で前ページ
         };
 
-        Layer {
+        function_layer {
+            label = "Func";
             bindings = <
-                &trans
-                &to Config
-                &to 0
-                &to Boot
-                &to Status
+                &kp F4             // 上：F4
+                &kp F2             // 左：F2
+                &f5_dance          // 中：F5/フルリフレッシュ/次ページ
+                &kp F1             // 右：F1
+                &kp F3             // 下：F3
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;  // 音量調整
         };
 
-        Config {
+        system_layer {
+            label = "Sys";
             bindings = <
-                &kp F4
-                &kp F2
-                &to Default
-                &kp F1
-                &kp F3
+                &ind_bat           // 上：バッテリー表示
+                &boox_brightness_down  // 左：Boox明るさ下げ
+                &email_macro       // 中：メールアドレスマクロ
+                &boox_brightness_up    // 右：Boox明るさ上げ
+                &ind_con           // 下：接続状態表示
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
-        };
-
-        Status {
-            bindings = <
-                &ind_bat
-                &kp F10
-                &to Default
-                &kp F10
-                &ind_con
-            >;
-
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
-        };
-
-        Boot {
-            bindings = <
-                &trans
-                &trans
-                &to Default
-                &trans
-                &bootloader
-            >;
-
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&bt BT_CLR &bt BT_CLR_ALL>;
         };
     };
 };

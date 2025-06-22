@@ -152,12 +152,12 @@
             bindings = <
                 &ind_bat           // 上：バッテリー表示
                 &boox_brightness_down  // 左：Boox明るさ下げ
-                &email_macro       // 中：メールアドレスマクロ
+                &bt BT_CLR         // 中：現在のプロファイル削除
                 &boox_brightness_up    // 右：Boox明るさ上げ
                 &ind_con           // 下：接続状態表示
             >;
 
-            sensor-bindings = <&bt BT_CLR &bt BT_CLR_ALL>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;  // 音量調整
         };
     };
 };

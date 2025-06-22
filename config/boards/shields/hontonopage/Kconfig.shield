@@ -1,2 +1,2 @@
-config hontonopage
+config SHIELD_HONTONOPAGE
     def_bool $(shields_list_contains,hontonopage)

@@ -124,11 +124,11 @@
         default_layer {
             label = "Base";
             bindings = <
-                &home_dance        // 上：ホーム/Boox検索/Ctrl+Home
-                &kp LEFT           // 左：←（前ページ）
+                &kp UP             // 上
+                &kp LEFT           // 左
                 &lt FUNCTION F5    // 中：F5（ホールドでFunction層）
-                &right_dance       // 右：→/マルチタスク/End
-                &kp C_AC_BACK      // 下：Androidバック
+                &kp RIGHT          // 右
+                &kp DOWN           // 下
             >;
 
             sensor-bindings = <&inc_dec_kp RIGHT LEFT>;  // 右で次ページ、左で前ページ

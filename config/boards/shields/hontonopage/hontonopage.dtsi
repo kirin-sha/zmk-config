@@ -29,11 +29,11 @@
         rows = <5>;
         // RC(row, col) の row が input-gpios の並びと対応
         map = <
-            RC(0, 0)   // pos 0（上）
-            RC(1, 0)   // pos 1（左）
-            RC(2, 0)   // pos 2（中央）
-            RC(3, 0)   // pos 3（右）
-            RC(4, 0)   // pos 4（下）
+            RC(0, 0)   // pos 0（中央）
+            RC(1, 0)   // pos 1（上）
+            RC(2, 0)   // pos 2（右）
+            RC(3, 0)   // pos 3（下）
+            RC(4, 0)   // pos 4（左）
         >;
     };
 
@@ -43,11 +43,11 @@
         wakeup-source;
         // 並び順＝スキャン順＝ポジション0..4
         input-gpios =
-            <&xiao_d 7  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,  // pos 0（上）
-            <&xiao_d 3  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,  // pos 1（左）
-            <&xiao_d 10  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,  // pos 2（中央）
-            <&xiao_d 1  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,  // pos 3（右）
-            <&xiao_d 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;  // pos 4（下）
+            <&xiao_d 2  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,  // pos 0（中央）
+            <&xiao_d 7  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,  // pos 1（上）
+            <&xiao_d 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,  // pos 2（右）
+            <&xiao_d 3  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,  // pos 3（下）
+            <&xiao_d 1  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;  // pos 4（左）
     };
 	    soft_off_wakers {
         compatible = "zmk,soft-off-wakeup-sources";

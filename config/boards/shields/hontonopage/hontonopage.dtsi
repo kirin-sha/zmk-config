@@ -44,10 +44,10 @@
         // 並び順＝スキャン順＝ポジション0..4
         input-gpios =
             <&xiao_d 7  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,  // pos 0（上）
-            <&xiao_d 2  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,  // pos 1（左）
-            <&xiao_d 3  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,  // pos 2（中央）
+            <&xiao_d 3  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,  // pos 1（左）
+            <&xiao_d 10  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,  // pos 2（中央）
             <&xiao_d 1  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,  // pos 3（右）
-            <&xiao_d 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;  // pos 4（下）
+            <&xiao_d 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;  // pos 4（下）
     };
 	    soft_off_wakers {
         compatible = "zmk,soft-off-wakeup-sources";

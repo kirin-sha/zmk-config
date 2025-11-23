@@ -23,12 +23,17 @@
 
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
-        columns = <0>;
-        rows = <5>;               
+
+        // 5本の input-gpios = 5行 × 1列 のマトリクス
+        columns = <1>;
+        rows = <5>;
+        // RC(row, col) の row が input-gpios の並びと対応
         map = <
-                    RC(0,3)
-            RC(0,1) RC(0,2) RC(0,0)
-                    RC(0,4)
+            RC(0, 0)   // pos 0（上）
+            RC(1, 0)   // pos 1（左）
+            RC(2, 0)   // pos 2（中央）
+            RC(3, 0)   // pos 3（右）
+            RC(4, 0)   // pos 4（下）
         >;
     };
 

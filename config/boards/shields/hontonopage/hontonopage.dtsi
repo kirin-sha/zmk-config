@@ -54,13 +54,7 @@
         wakeup-sources = <&kscan0>;
     };
 
-    encoder0: encoder0 {
-        compatible = "alps,ec11";
-        a-gpios = <&xiao_d 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        b-gpios = <&xiao_d 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        steps = <12>;
-        status = "okay";
-    };
+/* encoder0 node is now provided by the QDEC hardware (&qdec0). See bottom of file. */
 
     sensors: sensors {
         compatible = "zmk,keymap-sensors";
@@ -87,4 +81,24 @@
             gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;  // blue LED, connected to P0.06
         };
     };
+};
+
+&pinctrl {
+    qdec_default: qdec_default {
+        group1 {
+            /* Xiao BLE の D9 = P1.14, D8 = P1.13 を QDEC A/B に割り当て */
+            psels = <NRF_PSEL(QDEC_A, 1, 14)>,
+                    <NRF_PSEL(QDEC_B, 1, 13)>;
+            bias-pull-up;
+        };
+    };
+};
+
+/* NRFX QDEC ハードウェアを encoder0 として使う（ラベル名はそのまま） */
+encoder0: &qdec0 {
+    status = "okay";
+    led-pre = <0>;
+    steps = <12>;     /* Ano encoder: 12 pulses / rotation */
+    pinctrl-0 = <&qdec_default>;
+    pinctrl-names = "default";
 };

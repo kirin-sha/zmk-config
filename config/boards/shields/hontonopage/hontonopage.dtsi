@@ -92,6 +92,16 @@
             bias-pull-up;
         };
     };
+
+    /* QDEC の sleep 状態（とりあえず default と同じでOK） */
+    qdec_sleep: qdec_sleep {
+        group1 {
+            psels = <NRF_PSEL(QDEC_A, 1, 14)>,
+                    <NRF_PSEL(QDEC_B, 1, 13)>;
+            /* sleep 中は実際には pull を変えてもいいが、まずは同じでよい */
+            bias-pull-up;
+        };
+    };
 };
 
 /* NRFX QDEC ハードウェアを encoder0 として使う（ラベル名はそのまま） */
@@ -100,5 +110,6 @@ encoder0: &qdec0 {
     led-pre = <0>;
     steps = <12>;     /* Ano encoder: 12 pulses / rotation */
     pinctrl-0 = <&qdec_default>;
-    pinctrl-names = "default";
+    pinctrl-1 = <&qdec_sleep>;
+    pinctrl-names = "default", "sleep";
 };
